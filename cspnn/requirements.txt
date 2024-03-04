@@ -1,0 +1,26 @@
+tqdm 
+numpy 
+scipy 
+numba==0.48
+torch -i https://download.pytorch.org/whl/cpu
+torchvision -i https://download.pytorch.org/whl/cpu
+lightning
+torchmetrics
+matplotlib 
+scikit_learn
+imbalanced-learn
+xgboost
+tensorboardX 
+tensorboard
+dask[complete]
+pandas
+jupyterlab
+nb_black
+pywavelets
+kymatio
+mne
+mne_features
+wandb
+hydra-core
+moabb
+pytest

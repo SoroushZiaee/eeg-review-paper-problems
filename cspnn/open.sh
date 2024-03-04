@@ -1,0 +1,1 @@
+docker exec -it pase_dev bash

@@ -1,0 +1,39 @@
+version: "3.4"
+services:
+  pase_dev:
+    build:
+      dockerfile: ./Docker/Dockerfile
+      context: ./
+    image: pase-eeg:v1
+    container_name: pase_dev
+    # for GPUS
+    # runtime: nvidia
+    # or
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #          - driver: nvidia
+    #            count: 1
+    #            capabilities: [gpu]
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    # depends_on:
+    #   - wandb
+    ports:
+      - "8000:8000"
+      - "8888:8888"
+      - "8787:8787" # monitoring dask scheduler
+    volumes:
+      - ./:/usr/src/app
+      - /mnt/data:/data
+      - /mnt/experiments:/experiments
+      - /:/opt/ext
+    working_dir: /usr/src/app
+    shm_size: "3gb"
+    env_file:
+      - ./.env.dev
+
+    # privileged: true
+    command: jupyter lab --port=8000 --no-browser --ip=0.0.0.0 --allow-root
+    # restart: unless-stopped
